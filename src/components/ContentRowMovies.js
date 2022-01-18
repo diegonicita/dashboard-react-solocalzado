@@ -1,50 +1,74 @@
-import React from 'react';
-import SmallCard from './SmallCard';
+import React from "react";
+import SmallCard from "./SmallCard";
+import { useState, useEffect } from "react";
 
-/*  Cada set de datos es un objeto literal */
+let cards = [{
+  title: "Total de Productos",
+  color: "primary",
+  cuantity: "?",
+  icon: "fa-clipboard-list",
+},
+ {
+  title: "Total de Categorias",
+  color: "warning",
+  cuantity: "?",
+  icon: "fa-award",
+},
+{
+  title: "Total de Usuarios",
+  color: "primary",
+  cuantity: "?",
+  icon: "fa-clipboard-list",
+}];
 
-/* <!-- Movies in DB --> */
+function ContentRowMovies() {
+  const [smallCardLists1, setSmallCardLists1] = useState([ cards[0], cards[1]]);
+  const [smallCardLists2, setSmallCardLists2] = useState([ cards[2] ]);
 
-let moviesInDB = {
-    title: 'Movies in Data Base',
-    color: 'primary', 
-    cuantity: 21,
-    icon: 'fa-clipboard-list'
-}
+  let callApi = (url, consecuencia) => {
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        consecuencia(data);
+        console.log(data);
+      })
+      .catch((e) => console.log(e));
+  };
 
-/* <!-- Total awards --> */
+  useEffect(() => {
+    console.log("Se monto el componente userEffect");
+    callApi("/api/products", mostrarTotalProductos);
+  }, []);
 
-let totalAwards = {
-    title:' Total awards', 
-    color:'success', 
-    cuantity: '79',
-    icon:'fa-award'
-}
+  useEffect(() => {
+    console.log("Se monto el componente UseEffect");
+    callApi("/api/users", mostrarTotalUsuarios);
+  }, []);
 
-/* <!-- Actors quantity --> */
+  let mostrarTotalProductos = (data) => {
+    cards[0].cuantity = data.meta.count;
+    cards[1].cuantity = Object.keys(data.meta.countByCategory).length;
+    setSmallCardLists1([ cards[0], cards[1] ]);
+  }; 
 
-let actorsQuantity = {
-    title:'Actors quantity' ,
-    color:'warning',
-    cuantity:'49',
-    icon:'fa-user-check'
-}
+  let mostrarTotalUsuarios = (data) => {
+    cards[2].cuantity = data.meta.count;    
+    setSmallCardLists2([cards[2]]);
+  };
 
-let cartProps = [moviesInDB, totalAwards, actorsQuantity];
+  return (
+    <div className="row">
+      {smallCardLists1.map((item, i) => {
+        return <SmallCard {...item} key={i} />;
+      })}
 
-function ContentRowMovies(){
-    return (
-    
-        <div className="row">
-            
-            {cartProps.map( (movie, i) => {
-
-                return <SmallCard {...movie} key={i}/>
-            
-            })}
-
-        </div>
-    )
+      {smallCardLists2.map((item, i) => {
+        return <SmallCard {...item} key={i} />;
+      })}
+    </div>
+  );
 }
 
 export default ContentRowMovies;
