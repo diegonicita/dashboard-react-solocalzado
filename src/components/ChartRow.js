@@ -1,20 +1,19 @@
 import React from 'react';
 
-
 function ChartRow(props){
     return (
                 <tr>
-                    <td>{props.Title}</td>
-                    <td>{props.Length}</td>
-                    <td>{props.Rating}</td>
+                    <td>{props.titulo}</td>
+                    <td>{props.descripcion}</td>                    
                     <td>
                         <ul>
-                            {props.Categories.map( (category,i) => 
-                                <li key={`category ${i}`}>{category}</li>
-                            )}
+                            {
+                             props.categorias?props.categorias.map( (category,i) => 
+                                <li key={`categoria ${i}`}>{category}</li>
+                            ):""}
                         </ul>
-                    </td>
-                    <td>{props.Awards}</td>
+                    </td>                              
+                    <td>$ {props.precio}</td>
                 </tr>
             )
     }
