@@ -31,19 +31,16 @@ function ContentRowMovies() {
         return response.json();
       })
       .then((data) => {
-        consecuencia(data);
-        console.log(data);
+        consecuencia(data);        
       })
       .catch((e) => console.log(e));
   };
 
-  useEffect(() => {
-    console.log("Se monto el componente userEffect");
+  useEffect(() => {    
     callApi("/api/products", mostrarTotalProductos);
   }, []);
 
-  useEffect(() => {
-    console.log("Se monto el componente UseEffect");
+  useEffect(() => {    
     callApi("/api/users", mostrarTotalUsuarios);
   }, []);
 

@@ -18,8 +18,7 @@ class GenresInDb extends Component {
   }
 
   mostrarGenres = (generos) => {    
-    this.setState( {genresList: generos.meta.countByCategory});    
-    console.log(this.state.genresList);
+    this.setState( {genresList: generos.meta.countByCategory});        
   }
 
   componentDidMount() {
