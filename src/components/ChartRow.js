@@ -4,6 +4,7 @@ function ChartRow(props){
     return (
                 <tr>
                     <td>{props.titulo}</td>
+                    <td>{props.marca}</td>
                     <td>{props.descripcion}</td>                    
                     <td>
                         <ul>

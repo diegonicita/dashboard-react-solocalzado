@@ -46,6 +46,7 @@ let callApi = (url, consecuencia) => {
     {        
         return {                        
             titulo : p.title,
+            marca: p["brand.name"],
             descripcion : p.description,
             precio : p.price,
             categorias : [p["productgender.name"]]
@@ -63,6 +64,7 @@ let callApi = (url, consecuencia) => {
                         <thead>
                             <tr>
                                 <th>Producto</th>
+                                <th>Marca</th>
                                 <th>Descripcion</th>
                                 <th>Categorias</th>                                
                                 <th>Precio</th>
@@ -71,6 +73,7 @@ let callApi = (url, consecuencia) => {
                         <tfoot>
                             <tr>
                             <th>Producto</th>
+                            <th>Marca</th>
                             <th>Descripcion</th>
                             <th>Categorias</th>                            
                             <th>Precio</th>
