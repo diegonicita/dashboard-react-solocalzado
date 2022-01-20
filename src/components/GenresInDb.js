@@ -24,7 +24,7 @@ class GenresInDb extends Component {
   componentDidMount() {
     this.callApi("/api/products", this.mostrarGenres);
   }
-
+  
   cambieFondoCaja() {
     this.myDivRef.current.classList.toggle("bg-secondary");   
   }
