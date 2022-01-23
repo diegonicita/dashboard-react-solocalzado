@@ -10,7 +10,8 @@ function ChartRow(props){
                         <ul>
                             {
                              props.categorias?props.categorias.map( (category,i) => 
-                                <li key={`categoria ${i}`}>{category}</li>
+                                <li key={new Date().getTime() + i}
+                                >{category}</li>
                             ):""}
                         </ul>
                     </td>                              

@@ -82,7 +82,8 @@ let callApi = (url, consecuencia) => {
                         <tbody>
                             {
                             productsList.map( ( row , i) => {
-                                return <ChartRow { ...row} key={i}/>
+                                return <ChartRow { ...row} key={new Date().getTime() + i}
+                                />
                             })
                             }
 

@@ -44,7 +44,8 @@ class GenresInDb extends Component {
               <div className="row">
                 {
                  Object.entries(this.state.genresList).map((genre, index) => {
-                  return <Genre {...genre} key={index} />;
+                  return <Genre {...genre} key={new Date().getTime() + index}
+                  />;
                 })} 
               </div>
             </div>

@@ -58,11 +58,13 @@ function ContentRowMovies() {
   return (
     <div className="row">
       {smallCardLists1.map((item, i) => {
-        return <SmallCard {...item} key={i} />;
+        return <SmallCard {...item} key={new Date().getTime() + i}
+        />;
       })}
 
       {smallCardLists2.map((item, i) => {
-        return <SmallCard {...item} key={i} />;
+        return <SmallCard {...item} key={new Date().getTime() + i}
+        />;
       })}
     </div>
   );
