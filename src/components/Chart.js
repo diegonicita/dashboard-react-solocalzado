@@ -25,6 +25,7 @@ let tableRowsData = [
 function Chart (){
 
 const [productsList, setProductsList] = useState([...tableRowsData]);
+const [currentPage, setCurrentPage] = useState(0);
 
 let callApi = (url, consecuencia) => {
     fetch(url)
@@ -55,6 +56,22 @@ let callApi = (url, consecuencia) => {
     setProductsList(temporalData);
   }; 
 
+  let onSliceData = () => {
+    let data = [...productsList]; // spreading will return a new array
+    let sliceData = data.slice(currentPage*5,(currentPage+1)*(5));
+    return sliceData;
+  }
+
+  let sumePagina = () => {
+    if (currentPage < (productsList.length/5-1))
+    setCurrentPage(currentPage + 1);
+  }
+
+  let restePagina = () => {
+    if (currentPage > 0)
+    setCurrentPage(currentPage - 1);
+  }
+
     return (
         /* <!-- DataTales Example --> */
         <div className="card shadow mb-4">
@@ -80,15 +97,17 @@ let callApi = (url, consecuencia) => {
                             </tr>
                         </tfoot>
                         <tbody>
-                            {
-                            productsList.map( ( row , i) => {
-                                return <ChartRow { ...row} key={new Date().getTime() + i}
-                                />
+                            {                            
+                            onSliceData().map( ( row , i) => {
+                                return <ChartRow { ...row} key={new Date().getTime() + i}/>
                             })
                             }
 
                         </tbody>
                     </table>
+                <p style = {{textAlign: 'center'}}>
+                <button onClick={restePagina}>Pagina Previa</button> Pagina Actual : {currentPage+1} / {Math.round(productsList.length/5)} <button onClick={sumePagina}>Siguiente Pagina</button>
+                </p>
                 </div>
             </div>
         </div>
