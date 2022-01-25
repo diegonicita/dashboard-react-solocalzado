@@ -106,7 +106,7 @@ let callApi = (url, consecuencia) => {
                         </tbody>
                     </table>
                 <p style = {{textAlign: 'center'}}>
-                <button onClick={restePagina}>Pagina Previa</button> Pagina Actual : {currentPage+1} / {Math.round(productsList.length/5)} <button onClick={sumePagina}>Siguiente Pagina</button>
+                <button onClick={restePagina}>Pagina Previa</button> Pagina Actual : {currentPage+1} / {Math.ceil(productsList.length/5)} <button onClick={sumePagina}>Siguiente Pagina</button>
                 </p>
                 </div>
             </div>
